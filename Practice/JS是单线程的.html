@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS是单线程的</title>
+</head>
+<body>
+
+<script type="text/javascript">
+  //setTimeout回调函数
+  setTimeout(function () {
+    console.log("timeout 22222")
+    alert('22222')
+  },2000
+  )
+
+  setTimeout(function () {
+    console.log("timeout 11111")
+    alert('11111')
+  },1000
+  )
+
+  setTimeout(function () {
+    console.log("timeout 00000")
+    alert('00000')
+  },0)
+
+  console.log('alert()之前')
+  alert('------') //暂停当前主线程的执行, 同时暂停计时, 点击确定后, 恢复程序执行和计时
+  console.log('alert()之后')
+
+
+
+</script>
+</body>
+</html>

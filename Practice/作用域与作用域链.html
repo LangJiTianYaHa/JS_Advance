@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+
+  //没块作用域
+  if (true) {
+    var c = 3
+  }
+  var c = 4
+  console.log(c)
+  console.log('**********')
+
+  var a = 10,
+    b = 20
+  function fn(x) {
+    var a = 100, c = 300;
+    console.log('fn()', a, b, c, x)
+    function bar(x) {
+      var a = 1000, d = 400
+      console.log('bar()', a, b, c, d, x)
+    }
+
+    bar(100)
+    bar(200)
+  }
+  fn(10)
+
+  console.log("------------------------------------")
+
+  var a = 1
+  function fn1() {
+    var b = 2
+    function fn2() {
+      var c = 3
+      console.log(a)
+      console.log(b)
+      console.log(c)
+      //console.log(d)
+    }
+    fn2()
+
+  }
+  fn1()
+
+  console.log('+++++++++++    面试题    +++++++++++++++')
+  var x = 10;
+  function fn() {
+    console.log(x);
+  }
+  function show(fn) {
+    var x = 20;
+    fn();
+  }
+  fn()
+  console.log('fn')
+  show(fn);
+
+
+
+
+
+
+  console.log('+++++++++++    面试题2    +++++++++++++++')
+  var fn = function () {
+    console.log(fn)
+  }
+  fn()
+
+  function fn4() {
+    console.log(fn4)
+  }
+  fn4()
+
+
+  var obj = {
+    fn2: function () {
+      //console.log(fn2)
+      console.log(this.fn2)
+    }
+  }
+  obj.fn2()
+  console.log('.................')
+  
+
+
+
+
+</script>
+
+</body>
+</html>

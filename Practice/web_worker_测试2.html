@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>web_worker_测试</title>
+  <script type="text/javascript">
+    window.onload = function () {
+      //获取输入框和 按钮
+      var input = document.getElementById("number")
+      document.getElementById("btn").onclick = function () {
+        //获取输入框的值
+        var number  = input.value
+        
+        var worker = new Worker('worker2.js')
+        worker.postMessage(number)
+        console.log("主线程向分线程发送了数据："+number)
+        
+        worker.onmessage = function (event) {
+          console.log("主线程接收到了分线程返回的数据"+event.data)
+        }
+        }
+
+    }
+  </script>
+  
+</head>
+<body>
+<input type="text" placeholder="数值" id="number">
+<button id="btn">计算</button>
+</body>
+</html>

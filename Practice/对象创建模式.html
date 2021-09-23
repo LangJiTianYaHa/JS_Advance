@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script type="text/javascript">
+    /*方式一: Object构造函数模式
+    *  * 套路: 先创建空Object对象, 再动态添加属性/方法
+     * 适用场景: 起始时不确定对象内部数据
+     * 问题: 语句太多
+    *
+    * */
+    var p = new Object()
+    p.name = "Tom"
+    p.age  = 12
+    p.setName = function (name) {
+      this.name =name
+    }
+    console.log(p.name,p.age)
+    p.setName('Jack')
+    console.log(p.name,p.age)
+    console.log("方式一分隔符-------------------")
+
+    /*方式二:对象字面量模式
+    * * 套路: 使用{}创建对象, 同时指定属性/方法
+     * 适用场景: 起始时对象内部数据是确定的
+     * 问题: 如果创建多个对象, 有重复代码
+    *
+    * */
+    var s = {
+      name:'张三',
+      age:15,
+      setName:function (name) {
+        this.name = name
+      }
+    }
+    console.log(s.name,s.age)
+    s.setName("王五")
+    console.log(s.name,s.age)
+    console.log("方式二分隔符-------------------")
+
+    /*方式三: 工厂模式
+    * 套路: 通过工厂函数动态创建对象并返回
+    * 适用场景: 需要创建多个对象
+    * 问题: 对象没有一个具体的类型, 都是Object类型*/
+    function Student(name,age) {
+      var obj = {
+        name:name,
+        age:age,
+        setName:function (name) {
+          this.name = name
+        },
+        setAge:function (age) {
+          this.age = age
+        }
+      }
+      return obj
+    }
+    var s1 = Student('孙悟空',18)
+    var s2 = Student('猪八戒',20)
+    s1.setName("沙僧")
+    console.log(s1,s2)
+
+    console.log("方法三分割线-----------------------------")
+   /* 方式四: 自定义构造函数模式
+    * 套路: 自定义构造函数, 通过new创建对象
+    * 适用场景: 需要创建多个类型确定的对象
+    * 问题: 每个对象都有相同的数据, 浪费内存*/
+    function Teacher(name,age) {
+      this.name = name
+      this.age = age
+      this.setName = function (name) {
+        this.name = name
+      }
+    }
+    var t1 = new Teacher('张老师',25)
+    var t2= new Teacher('李老师',30)
+    t2.setName('王老师')
+
+    console.log(t1,t2)
+    
+    function Person(name,age) {
+      this.name = name
+      this.age = age
+      this.setName = function (name) {
+        this.name = name
+      }
+    }
+    var p1 = new Person('zhangSan',50)
+    var p2 = new Person('lisi',45)
+    console.log(p1,p2)
+    
+    console.log("方法五分隔符------------------------")
+    /*方式六: 构造函数+原型的组合模式
+    * 套路: 自定义构造函数, 属性在函数中初始化, 方法添加到原型上
+    * 适用场景: 需要创建多个类型确定的对象*/
+    function w(name,age) {
+      this.name = name
+      this.age = age
+   
+      
+    }
+    w.prototype.setName = function (name) {
+      this.name = name
+    }
+    var w1 = new w('张三',60)
+    console.log(w1)
+    w1.setName('王五')
+    console.log(w1)
+  </script>
+
+
+
+
+</body>
+</html>
